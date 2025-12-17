@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int rows, cols;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+
+    int cinema[rows][cols];
+
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cinema[i][j] = 0;
+        }
+    }
+
+    char choice;
+    do {
+
+        cout << "\nCinema Seating Map:\n";
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (cinema[i][j] == 0)
+                    cout << "O "; 
+                else
+                    cout << "X "; 
+            }
+            cout << endl;
+        }
+
+        int r, c;
+        cout << "\nEnter row number (1-" << rows << "): ";
+        cin >> r;
+        cout << "Enter column number (1-" << cols << "): ";
+        cin >> c;
+
+        if (r < 1 || r > rows || c < 1 || c > cols) {
+            cout << "Invalid seat position!\n";
+        } else if (cinema[r - 1][c - 1] == 1) {
+            cout << "Seat already reserved!\n";
+        } else {
+            cinema[r - 1][c - 1] = 1;
+            cout << "Seat reserved successfully!\n";
+        }
+
+        cout << "\nDo you want to reserve another seat? (y/n): ";
+        cin >> choice;
+
+    } while (choice == 'y' || choice == 'Y');
+
+    cout << "\nFinal Cinema Seating Map:\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (cinema[i][j] == 0)
+                cout << "O ";
+            else
+                cout << "X ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
